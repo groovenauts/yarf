@@ -1,15 +1,13 @@
-# Yarf
+# yarf
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/yarf`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+yarf means "Yet Another Rails Fixture"
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'yarf'
+gem 'yarf', group: :development
 ```
 
 And then execute:
@@ -22,7 +20,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
+At the point where you want to get the database snapshot, just run like this.
+
+```
+Yarf.record("snapshot_name1")
+```
+
 
 ## Development
 
