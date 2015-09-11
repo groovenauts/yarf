@@ -10,12 +10,19 @@ module Yarf
       end
     end
 
+    DEFAULT_CONFIG_MODELS = {
+      "common" => {
+        "ignored_columns" => %w[created_at updated_at],
+      }
+    }.freeze
+
     attr_reader :base_dir
     attr_reader :model_configs
     def initialize(hash)
+      hash ||= {}
       @base_dir = File.expand_path(hash["base_dir"] || 'spec/fixtures')
-      @models_paths = hash["app_models_paths"] || defined?(Rails) ? Rails.root.join("app/models").to_s : raise("no app_models_paths found")
-      @model_configs = load_model_configs(hash["models"])
+      @models_paths = hash["app_models_paths"] || (defined?(Rails) ? [Rails.root.join("app/models").to_s] : raise("no app_models_paths found"))
+      @model_configs = load_model_configs(hash["models"] || DEFAULT_CONFIG_MODELS.dup)
     end
 
     def load_model_configs(hash)
