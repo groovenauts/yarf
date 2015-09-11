@@ -8,8 +8,12 @@ module Yarf
   autoload :Recorder   , "yarf/recorder"
 
   class << self
+    attr_writer :config_path
+    def config_path
+      @config_path ||= Dir.glob("**/spec/fixtures/config.yml").first
+    end
     def instance
-      @instance ||= Config.load_file(File.expand_path("../../spec/fixtures/config.yml", __FILE__))
+      @instance ||= Config.load_file(config_path)
     end
     def record(name)
       instance.record(name)
