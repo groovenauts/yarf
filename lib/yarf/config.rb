@@ -13,8 +13,8 @@ module Yarf
     attr_reader :base_dir
     attr_reader :model_configs
     def initialize(hash)
-      @base_dir = File.expand_path(hash["base_dir"] || 'tmp/fixtures')
-      @models_paths = hash["app_models_paths"] || raise("no app_models_paths found")
+      @base_dir = File.expand_path(hash["base_dir"] || 'spec/fixtures')
+      @models_paths = hash["app_models_paths"] || defined?(Rails) ? Rails.root.join("app/models").to_s : raise("no app_models_paths found")
       @model_configs = load_model_configs(hash["models"])
     end
 
