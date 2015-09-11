@@ -21,11 +21,19 @@ Or install it yourself as:
 ## Usage
 
 
-At the point where you want to get the database snapshot, just run like this.
+At the point where you want to take the database snapshot, just do like this.
 
 ```
 Yarf.record("snapshot_name1")
 ```
+
+And you can load the snapshot from fixtures to database like this
+```
+Yarf.load_fixtures("000-snapshot_name1")
+```
+
+The number might be different from "000", please check the file name at spec/fixtures.
+
 
 
 ## Development
